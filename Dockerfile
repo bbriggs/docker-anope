@@ -4,12 +4,13 @@ ENV ANOPE_VERSION="2.0.6"
 RUN apt-get update \
  && apt-get upgrade -y \
  && apt-get install -y --no-install-recommends \
-    ca-certificates wget build-essential curl cmake file expect libssl-dev exim4
+    ca-certificates wget build-essential curl cmake file expect libssl-dev exim4 default-libmysqlclient*
 RUN groupadd -r ircd && useradd -r -m -g ircd ircd \
  && sed -i "/^dc_eximconfig_configtype=/ s/'local'/'internet'/" /etc/exim4/update-exim4.conf.conf
 
 COPY deploy-anope.sh /home/ircd/deploy-anope.sh
 COPY anope-make.expect /home/ircd/anope-make.expect
+COPY Makefile /home/ircd/Makefile
 
 USER ircd
 WORKDIR /home/ircd

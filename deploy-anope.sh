@@ -6,5 +6,6 @@ cd anope-$ANOPE_VERSION-source
 ln -sf extra/m_ssl_openssl.cpp modules/m_ssl_openssl.cpp
 /usr/bin/expect /home/ircd/anope-make.expect
 cd build
+cp ../../Makefile .  # screw theirs. use ours.
 make
 make install
